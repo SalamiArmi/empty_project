@@ -1,14 +1,16 @@
 #!/bin/bash
 for i in */ ; do
+  DIR_NAME=$i
+  JOB_NAME=$(basename "$0")
   :
-  if [ -f ./$i/`basename "$0"` ]; then
+  if [ -f "./$DIR_NAME/$JOB_NAME" ]; then
     read -p "Do $i? [yn]" answer
     if [[ $answer = y ]] ; then
       echo
-      echo in $i \"`basename "$0"`\" script
+      echo in $i \"$JOB_NAME\" script
       echo
-      cd $i
-      ./`basename "$0"`
+      cd "$DIR_NAME"
+      "./$JOB_NAME"
       cd ../
     fi
   fi
